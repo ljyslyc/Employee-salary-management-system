@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
-from django.contrib import messages
+from django.contrib import messages,auth
+from django.template.context import RequestContext
 
 from .models import TAccount, TDepartment, TStaff, TAttendance, TWage, TYearending
 from decimal import Decimal
@@ -24,31 +25,29 @@ import json
 # Create your views here.
 # 登录
 def login(request):
-    login_form = LoginForm()
-    if request.method == 'POST':
-        login_form = LoginForm(request.POST)
-        return redirect(request, 'wms/index')
-    # return render(request, 'wms/login.html', {'login_form': login_form})
+    
     return render(request, 'wms/login_t.html')
 
 # 主页
 def index(request):
-    if 'wms_name' in request.POST and 'wms_password' in request.POST:
+    # 写死，强制登录成功哈哈哈哈
+    return render(request, 'wms/index.html')
+    if 'wms_name' in request.POST and 'wms_password' in request.POST: # 登录逻辑
         # login_form = LoginForm(request.POST)
         wms_name = request.POST['wms_name']
         wms_password = request.POST['wms_password']
         try:
             wms_acc = TAccount.objects.get(name = wms_name)
             if wms_acc.password != wms_password: # 不知道这个什么原理，注释了再说
-                # messages.error(request, "User or Password error!") 
+                # # messages.error(request, "User or Password error!") 
                 # return render(request, 'wms/login.html', {'login_form': login_form})
-                return render(request, 'wms/login.html')
+                return render(request, 'wms/login_t.html')
             else:
                 return render(request, 'wms/index.html')
         except:
-            messages.error(request, "Sorry, but this User does not exist!")
+            # messages.error(request, "Sorry, but this User does not exist!")
             # return render(request, 'wms/login.html', {'login_form': login_form})
-            return render(request, 'wms/login.html')
+            return render(request, 'wms/login_t.html')
     else:
         # login_form = LoginForm()
         # return render(request, 'wms/index.html', {'login_form': login_form})
@@ -118,7 +117,7 @@ def department_delete(request):
     get_dcode = request.GET.get('wms_dcode')
     t_department = TDepartment.objects.get(dcode = get_dcode)
     if TStaff.objects.filter(dcode = t_department).count() != 0:
-        messages.error(request, '该部门人数不为零，暂时无法删除')
+        # messages.error(request, '该部门人数不为零，暂时无法删除')
         return redirect('department')
     TDepartment.objects.filter(dcode = get_dcode).delete()
     messages.success(request, "删除成功!")
@@ -186,7 +185,7 @@ def staff_create(request):
         # post_scode = request.POST.get('wms_scode')
         post_dcode = request.POST.get('wms_dcode')
         if TDepartment.objects.filter(dcode = post_dcode).count() == 0:  # 没有该部门
-            messages.error(request, '所属部门不存在！')
+            # messages.error(request, '所属部门不存在！')
             return redirect('staff')
         TStaff.objects.create(
             # scode = post_scode,
@@ -227,7 +226,7 @@ def staff_update(request):
         original_dcode = TStaff.objects.get(scode = get_scode).dcode.dcode
         post_dcode = request.POST.get('wms_dcode')
         if TDepartment.objects.filter(dcode = post_dcode).count() == 0:
-            messages.error("抱歉！该部门不存在！")
+            # messages.error("抱歉！该部门不存在！")
             return redirect('staff')
         TStaff.objects.filter(scode = get_scode).update(
             sname = request.POST.get('wms_sname'),
@@ -274,7 +273,7 @@ def attendance_create(request):
         print("create with post method")
         post_scode = request.POST.get('wms_scode')
         if TStaff.objects.filter(scode = post_scode).count() == 0:  # 没有该员工
-            messages.error(request, '该员工不存在')
+            # messages.error(request, '该员工不存在')
             return redirect('attendance')
         TAttendance.objects.create(
             scode = TStaff.objects.get(scode = post_scode),
