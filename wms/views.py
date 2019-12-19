@@ -24,12 +24,13 @@ import json
 # Create your views here.
 # 登录
 def login(request):
-    # login_form = LoginForm()
-    # if request.method == 'POST':
-    #     login_form = LoginForm(request.POST)
-    #     return redirect(request, 'wms/index')
+    login_form = LoginForm()
+    if request.method == 'POST':
+        login_form = LoginForm(request.POST)
+        return redirect(request, 'wms/index')
     # return render(request, 'wms/login.html', {'login_form': login_form})
     return render(request, 'wms/login_t.html')
+
 # 主页
 def index(request):
     if 'wms_name' in request.POST and 'wms_password' in request.POST:
@@ -38,8 +39,8 @@ def index(request):
         wms_password = request.POST['wms_password']
         try:
             wms_acc = TAccount.objects.get(name = wms_name)
-            if wms_acc.password != wms_password:
-                messages.error(request, "User or Password error!")
+            if wms_acc.password != wms_password: # 不知道这个什么原理，注释了再说
+                # messages.error(request, "User or Password error!") 
                 # return render(request, 'wms/login.html', {'login_form': login_form})
                 return render(request, 'wms/login.html')
             else:
