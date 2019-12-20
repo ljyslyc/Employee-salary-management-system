@@ -10,6 +10,7 @@ urlpatterns = [
     # redirect to login
     path('home', RedirectView.as_view(url = 'login')),
     path('index', views.index, name = 'index'),
+    path('newindex', views.newindex, name = 'newindex'),
     path('department', views.department, name = 'department'),
     path('department-create', views.department_create, name = 'department-create'),
     path('department-update', views.department_update, name = 'department-update'),

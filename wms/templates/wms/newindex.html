@@ -1,0 +1,36 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    <meta charset="utf-8">
+    <title>员工工资管理系统</title>
+
+    <!-- Bootstrap core CSS -->
+{#    <link href="{% static 'wms/css/bootstrap.min.css' %}" rel="stylesheet">#}
+
+    <!-- Custom styles for this template -->
+{#    <link href="{% static 'wms/css/cover.css' %}" rel="stylesheet">#}
+       <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+       <link rel="stylesheet" href="{% static 'wms/layui/css/layui.css' %}"  media="all">
+
+  </head>
+
+  <body>
+    <script src="{% static 'wms/layui/layui.js' %}"></script>
+
+    <ul class="layui-nav layui-bg-cyan">
+      <li class="layui-nav-item"><a href="">员工薪资管理系统</a></li>
+      <li class="layui-nav-item layui-this"><a href="">员工管理</a></li>
+      <li class="layui-nav-item"><a href="">出勤信息管理</a></li>
+      <li class="layui-nav-item">
+        <a href="javascript:;">工资信息管理</a>
+        <dl class="layui-nav-child">
+          <dd><a href="">员工年终奖</a></dd>
+          <dd><a href="">企业工资报表</a></dd>
+        </dl>
+      </li>
+    </ul>
+
+  </body>
+</html>

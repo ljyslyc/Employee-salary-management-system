@@ -53,6 +53,12 @@ def index(request):
         # return render(request, 'wms/index.html', {'login_form': login_form})
         return render(request, 'wms/index.html')
 
+
+def newindex(request):
+    # 写死，强制登录成功哈哈哈哈
+    return render(request, 'wms/newindex.html')
+
+
 # 部门管理
 def department(request):
     t_department = TDepartment.objects.all()
