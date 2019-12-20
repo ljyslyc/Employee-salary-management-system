@@ -6,7 +6,7 @@ github玩不起，码云我来了
 ### 运行步骤
 + 安装依赖(可考虑用anaconda建立虚拟环境)
   ```
-    pip install -t requirements.txt
+    pip install -r requirements.txt
   ```
   
   为了加快pip下载速度，建议更换pip源。
