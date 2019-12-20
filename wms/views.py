@@ -25,13 +25,12 @@ import json
 # Create your views here.
 # 登录
 def login(request):
-    
     return render(request, 'wms/login_t.html')
 
 # 主页
 def index(request):
     # 写死，强制登录成功哈哈哈哈
-    return render(request, 'wms/index.html')
+    return render(request, 'wms/staff.html')
     if 'wms_name' in request.POST and 'wms_password' in request.POST: # 登录逻辑
         # login_form = LoginForm(request.POST)
         wms_name = request.POST['wms_name']

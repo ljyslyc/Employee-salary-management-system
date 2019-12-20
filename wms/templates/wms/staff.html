@@ -1,13 +1,5 @@
-<html>
-<head>	
-	<meta charset="UTF-8" />	
-  <title>wsm-staff</title>
-</head>
-<!--/************************************************************
-* 注释模板
-**************************************************************-->
-<body>
-
+{% extends "wms/base.html" %}
+{% block content %}
 <div>
     <a href="/wms/index">返回首页</a><br />
     <a href="/wms/staff-create">添加员工</a><br />
@@ -46,8 +38,6 @@
     </table>
 </div>
 
-
-
 {% if messages %}
 <script>
     {% for msg in messages %}
@@ -56,5 +46,4 @@
 </script>
 {% endif %}
 
-</body>
-</html>
+{% endblock %}
