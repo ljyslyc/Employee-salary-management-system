@@ -1,12 +1,9 @@
 {% extends "wms/base.html" %}
 {% block content %}
-<div>
-    <a href="/wms/index">返回首页</a><br />
-    <a href="/wms/staff-create">添加员工</a><br />
-</div>
+
 
 <div>
-    <table>
+    <table class="layui-table" style="margin: 20px;">
         <thead>
         <tr>
             <th>代码</th>
@@ -36,6 +33,8 @@
         {% endfor %}
         </tbody>
     </table>
+
+    <a href="/wms/staff-create" class="layui-btn layui-btn-normal" style="margin:10px">添加员工</a><br />
 </div>
 
 {% if messages %}

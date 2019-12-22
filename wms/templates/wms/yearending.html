@@ -1,19 +1,11 @@
-<html>
-<head>	
-	<meta charset="UTF-8" />	
-  <title>wsm-yearending-bonus</title>
-</head>
-<!--/************************************************************
-* 注释模板
-**************************************************************-->
-<body>
-
+{% extends "wms/base.html" %}
+{% block content %}
 <div>
     <a href="/wms/index">返回首页</a><br />
 </div>
 
 <div>
-    <table>
+    <table class="layui-table">
         <thead>
         <tr>
             <th>员工代码</th>
@@ -47,6 +39,4 @@
 </script>
 {% endif %}
 
-</body>
-</html>
-
+{% endblock %}
